@@ -31,7 +31,6 @@
     "@testing-library/jest-dom": "5.11.10",
     "@testing-library/react": "11.2.6",
     "babel-loader": "8.2.2",
-    "canvas": "^2.7.0",
     "copy-webpack-plugin": "8.1.1",
     "css-loader": "^5.2.1",
     "eslint": "^7.24.0",
