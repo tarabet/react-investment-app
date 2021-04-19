@@ -6,13 +6,21 @@ import Menu from './menu';
 import RiskLevelSelector from './risk-level-selector';
 import Table from './table';
 import Chart from './chart';
-import { API_RISK_CALCULATIONS, HEADERS_JSON, DEFAULT_RISK_LEVEL } from './constants';
+import {
+  API_RISK_CALCULATIONS_DEV,
+  API_RISK_CALCULATIONS_PROD,
+  HEADERS_JSON,
+  DEFAULT_RISK_LEVEL,
+} from './constants';
+
 import { apiGet, buildSupportedRiskLevelsArr } from './utils';
 import DepositSumInput from './deposot-sum-input';
 
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
 export default () => {
   const [state, setState] = useState({
-    deposit: 0,
+    deposit: 1000,
     months: 12,
     riskLevels: null,
     riskLevelSelected: null,
@@ -28,7 +36,10 @@ export default () => {
   }
 
   useEffect(() => {
-    apiGet(API_RISK_CALCULATIONS, HEADERS_JSON)
+    // needed for not to configure nginx apis when deploying
+    const url = isDevelopment ? API_RISK_CALCULATIONS_DEV : API_RISK_CALCULATIONS_PROD;
+
+    apiGet(url, HEADERS_JSON)
       .then((data) => {
         const supportedRiskLevels = buildSupportedRiskLevelsArr(data);
 
@@ -40,7 +51,7 @@ export default () => {
           supportedRisksCalculations: data,
         });
       })
-      .catch(() => console.log('Oops, cannot get data from ', API_RISK_CALCULATIONS)); // some better error handling should be implemented
+      .catch(() => console.log('Oops, cannot get data from ', url)); // some better error handling should be implemented
   }, []);
 
   return (

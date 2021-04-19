@@ -14,7 +14,7 @@ const DepositSumInput = ({ onDepositSumChange }) => {
       <div className="input-group mb-3">
         <input onChange={(e) => changeSum(e.target.value)} type="text" className="form-control" placeholder="Enter deposit sum" aria-label="Input amount" aria-describedby="basic-addon2" />
         <div className="input-group-append">
-          <button onClick={() => applyNewDepositSum()} className="btn btn-outline-secondary" type="button">Button</button>
+          <button onClick={() => applyNewDepositSum()} className="btn btn-outline-secondary" type="button">Set Deposit</button>
         </div>
       </div>
     </div>
