@@ -7,10 +7,10 @@ import { Button } from 'react-bootstrap';
 export default class Menu extends Component {
   render() {
     return (
-      <div style={{ display: 'flex', textAlign: 'center' }}>
-        <Link to="/table"><Button variant="primary">Table</Button></Link>
+      <div data-testid="app-menu" style={{ display: 'flex', textAlign: 'center' }}>
+        <Link data-testid="menu-table-link" to="/table"><Button variant="primary">Table</Button></Link>
                 &nbsp;
-        <Link to="/chart"><Button variant="primary">Chart</Button></Link>
+        <Link data-testid="menu-chart-link" to="/chart"><Button variant="primary">Chart</Button></Link>
       </div>
     );
   }

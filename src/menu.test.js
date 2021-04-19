@@ -4,17 +4,19 @@ import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import Menu from './menu';
 
-describe('Menu', () => {
-  it('should render correctly', () => {
+describe('Tests menu component', () => {
+  beforeAll(() => {
     render(
       <BrowserRouter>
         <Menu />
       </BrowserRouter>,
     );
+  });
 
-    expect(screen.getByText('Table')).toBeInTheDocument();
-    // expect(screen.getByText('Table')).toHaveAttribute('href', '/table');
-    expect(screen.getByText('Chart')).toBeInTheDocument();
-    // expect(screen.getByText('Chart')).toHaveAttribute('href', '/chart');
+  it('Both links should be present with correct href params', () => {
+    expect(screen.getByTestId('menu-table-link')).toBeInTheDocument();
+    expect(screen.getByTestId('menu-table-link')).toHaveAttribute('href', '/table');
+    expect(screen.getByTestId('menu-chart-link')).toBeInTheDocument();
+    expect(screen.getByTestId('menu-chart-link')).toHaveAttribute('href', '/chart');
   });
 });

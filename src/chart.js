@@ -3,9 +3,14 @@ import { Chart as ChartJs } from 'chart.js';
 import PropTypes from 'prop-types';
 import { calculateTimeSeries } from './utils';
 
+// Consider renaming component for not collide with chart.js dependency
 class Chart extends Component {
   componentDidMount() {
-    this.drawChart();
+    const { supportedRisksCalculations } = this.props;
+
+    if (supportedRisksCalculations) {
+      this.drawChart();
+    }
   }
 
   drawChart() {
@@ -85,13 +90,21 @@ class Chart extends Component {
 
     const { canvas } = this;
     const context = canvas.getContext('2d');
+
     const myChart = new ChartJs(context, config); // eslint-disable-line no-unused-vars
   }
 
   render() {
+    const { supportedRisksCalculations } = this.props;
+
+    if (!supportedRisksCalculations) {
+      return <div>No data is provided</div>;
+    }
+
     return (
       <div>
         <canvas
+          data-testId="chart"
           ref={(ref) => this.canvas = ref} // eslint-disable-line no-return-assign
           width={600}
           height={400}
@@ -102,6 +115,10 @@ class Chart extends Component {
 }
 
 export default Chart;
+
+Chart.defaultProps = {
+  deposit: 1000,
+};
 
 Chart.propTypes = {
   deposit: PropTypes.number,

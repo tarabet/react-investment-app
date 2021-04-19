@@ -9,14 +9,14 @@ const RiskLevelSelector = ({ onChangeRiskLevel, riskLevels }) => {
   }
 
   function renderOptions() {
-    return riskLevels.map((item) => <option key={item.toString()} value={item}>{item}</option>);
+    return riskLevels.map((item) => <option data-testid="risk-option" key={item.toString()} value={item}>{item}</option>);
   }
 
   return (
     <div>
       Risk level:
       <div className="input-group mb-3">
-        <select onChange={onChange} className="custom-select" id="inputGroupSelect02">
+        <select onChange={onChange} className="custom-select" id="inputGroupSelect02" data-testid="risk-select">
           {/* Something better should be implemented here */}
           {riskLevels?.length > 0 ? renderOptions() : <option value="">No data to chose</option>}
         </select>

@@ -38,7 +38,7 @@ const Table = ({ riskLevelSelected, supportedRisksCalculations, deposit }) => {
   ]);
 
   return (
-    <table>
+    <table role="table">
       <thead>
         {tableHeader}
       </thead>
@@ -50,7 +50,7 @@ const Table = ({ riskLevelSelected, supportedRisksCalculations, deposit }) => {
 };
 
 Table.defaultProps = {
-  deposit: 0,
+  deposit: 1000,
   riskLevelSelected: null,
 };
 

@@ -56,7 +56,7 @@ export default () => {
 
   return (
     <Router>
-      <Container>
+      <Container data-testid="app-container">
         <Row className="p-3">
           <Col>
             <Menu />
@@ -75,6 +75,7 @@ export default () => {
         <Row className="p-3">
           <Col>
             <DepositSumInput
+              deposit={state.deposit}
               onDepositSumChange={onChangeDeposit}
             />
           </Col>
